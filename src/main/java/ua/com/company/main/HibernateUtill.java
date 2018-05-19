@@ -31,11 +31,14 @@ public class HibernateUtill {
 			 * що прийме мапу як параметер перехід на StandardServiceRegistryBuilder -->
 			 * StandardServiceRegistryBuilder registryBuilder = new
 			 * StandardServiceRegistryBuilder(BootstrapServiceRegistryBuilder b);
+			 * додати класи-ентіті в обєкт MetadataSources metadataSources = new MetadataSources(serviceRegistry);
+			 * metadataSources.addAnnotatedClass(Person.class);
+				metadataSources.addAnnotatedClass(Product.class);
 			 */
-
+			
 			serviceRegistry = new StandardServiceRegistryBuilder(registry).configure("hibernate.cfg.xml").build();
-
 			Metadata metadata = new MetadataSources(serviceRegistry).getMetadataBuilder().build();
+		
 
 			factory = metadata.getSessionFactoryBuilder().build();
 		} catch (Exception e) {
